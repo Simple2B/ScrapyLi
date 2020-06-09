@@ -1,6 +1,5 @@
 import os
 import time
-from urllib.parse import urljoin
 from dotenv import load_dotenv
 
 import scrapy
@@ -44,12 +43,11 @@ class LinkedinSpider(scrapy.Spider):
     def parse(self, response):
         self.driver.get(SITE_URL)
         self.driver.implicitly_wait(30)
-        time.sleep(7)
+        time.sleep(5)
         print('#'*100)
-        print(response.xpath('//*li[@class="list-style-none "]/div/a/@href').extract())
-        # for post_link in response.xpath(
-        #         '//li[@class="list-style-none "]/div/a/@href').extract():
-        #     url = urljoin(response.url, post_link)
-        #     print(('*'*60))
-        #     print(url)
+        data = self.driver.find_elements_by_xpath('/html/body/div[7]/div[3]/div/div/div/div/div/div/div/div/section/ul/li')
+        for contact in data:
+            profile = contact.find_element_by_xpath('div/a').get_attribute('href')
+            print(profile)
+
         self.driver.close()
