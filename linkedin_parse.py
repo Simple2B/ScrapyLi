@@ -9,7 +9,7 @@ from selenium.common.exceptions import NoSuchElementException
 load_dotenv()
 
 PAGE_SCROLING_TIME = 1
-SITE_URL = os.getenv('SITE_URL')
+SITE_URL = os.getenv("SITE_URL", "https://www.linkedin.com/mynetwork/invite-connect/connections")
 PATH_TO_CHROME_DRIVER = os.getenv("PATH_TO_CHROME_DRIVER")
 HTTP_LOGIN = os.getenv("HTTP_LOGIN")
 HTTP_PASS = os.getenv("HTTP_PASS")
